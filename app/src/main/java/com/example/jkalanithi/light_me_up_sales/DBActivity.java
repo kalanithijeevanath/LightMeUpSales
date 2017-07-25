@@ -30,7 +30,7 @@ public class DBActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_db);
 
         refreshButton = (Button) findViewById(R.id.refresh);
 
@@ -45,13 +45,16 @@ public class DBActivity extends Activity {
     }
 
     public void add(View v) {
-        EditText name = (EditText) findViewById(R.id.studentNameText);
-        boolean hasChanged = insertDB(name.getText().toString());
+        EditText login = (EditText) findViewById(R.id.login);
+        EditText pass = (EditText) findViewById(R.id.pass);
+        boolean hasChanged = insertDB(login.getText().toString(),pass.getText().toString());
         setChangeData(hasChanged);
-        name.setText(null);
+        login.setText(null);
     }
-
+/*
     public void modify(View v) {
+
+
         EditText idText = (EditText) findViewById(R.id.idText);
         EditText nameText = (EditText) findViewById(R.id.nameText);
 
@@ -77,7 +80,7 @@ public class DBActivity extends Activity {
         }
         idDelete.setText(null);
     }
-
+*/
     public void displayData(View v) {
         setChangeData(false);
 
@@ -111,10 +114,11 @@ public class DBActivity extends Activity {
         }
     }
 
-    private boolean insertDB(String value) {
+    private boolean insertDB(String login,String pass) {
         if (db != null && db.isOpen() && !db.isReadOnly()) {
             ContentValues values = new ContentValues();
-            values.put(MyDBOpenHelper.FIELD1, value);
+            values.put(MyDBOpenHelper.FIELD1, login);
+            values.put(MyDBOpenHelper.FIELD2, pass);
             long id = db.insert(MyDBOpenHelper.MY_TABLE_NAME, null, values);
             Toast.makeText(this, "insertDB: " + id, Toast.LENGTH_SHORT).show();
             return (id > -1);
@@ -148,14 +152,16 @@ public class DBActivity extends Activity {
         if (db != null && db.isOpen()) {
             Cursor cursor = db.query(MyDBOpenHelper.MY_TABLE_NAME, null, null, null, null, null, null);
             while (cursor.moveToNext()) {
-                long studentId = cursor.getLong(0);
-                String studentName = cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD1));
-                //			Log.v(TAG, "student name: " + studentName);
-                data.append(studentId).append(";").append(studentName).append(NL);
+                long id = cursor.getLong(0);
+                String login = cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD1));
+                String pass = cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD2));
+                data.append(id).append(";").append(login).append(";").append(pass).append(NL);
             }
             cursor.close();
         }
         return data.toString();
     }
+
+
 
 }

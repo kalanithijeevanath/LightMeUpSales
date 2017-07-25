@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Light_Me_Up_Sales</string>
+    <string name="title_activity_db">DBActivity</string>
+    <string name="title_activity_write_pref">WritePrefActivity</string>
+    <string name="title_activity_read_pref">ReadPrefActivity</string>
+    <string name="input_data">Saisissez une donnée</string>
+    <string name="save">Sauvegarder</string>
+    <string name="login">login</string>
+    <string name="pass">mot de passe</string>
+    <string name="add">Creér</string>
+    <string name="displayData">Actualiser les données</string>
 </resources>
