@@ -21,9 +21,9 @@ import com.example.jkalanithi.light_me_up_sales.db.MyDBOpenHelper;
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends Activity {
-    Button b1,b2,b3;
+    Button b1,b2;
     EditText ed1,ed2;
-
+    TextView sup;
     SQLiteDatabase db;
 
     TextView tx1;
@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 
         initDB();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         b1 = (Button) findViewById(R.id.button);
         ed1 = (EditText) findViewById(R.id.editText);
         ed2 = (EditText) findViewById(R.id.editText2);
@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
         tx1 = (TextView) findViewById(R.id.textView3);
         tx1.setVisibility(View.GONE);
 
-        b3 = (Button) findViewById(R.id.button3);
+        sup = (TextView) findViewById(R.id.sup);
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        b3.setOnClickListener(new View.OnClickListener() {
+        sup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, DBActivity.class));

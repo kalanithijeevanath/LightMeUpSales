@@ -30,9 +30,9 @@ public class DBActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_db);
+        setContentView(R.layout.activity_newuser);
 
-        refreshButton = (Button) findViewById(R.id.refresh);
+        //refreshButton = (Button) findViewById(R.id.refresh);
 
         initDB();
     }
@@ -48,7 +48,7 @@ public class DBActivity extends Activity {
         EditText login = (EditText) findViewById(R.id.login);
         EditText pass = (EditText) findViewById(R.id.pass);
         boolean hasChanged = insertDB(login.getText().toString(),pass.getText().toString());
-        setChangeData(hasChanged);
+        //setChangeData(hasChanged);
         login.setText(null);
     }
 /*
@@ -80,7 +80,7 @@ public class DBActivity extends Activity {
         }
         idDelete.setText(null);
     }
-*/
+
     public void displayData(View v) {
         setChangeData(false);
 
@@ -97,7 +97,7 @@ public class DBActivity extends Activity {
             refreshButton.setText(label.substring(1));
         }
     }
-
+*/
 
     private void initDB() {
         MyDBOpenHelper dbHelper = new MyDBOpenHelper(getApplicationContext());
