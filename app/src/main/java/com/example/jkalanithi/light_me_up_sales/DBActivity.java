@@ -47,7 +47,9 @@ public class DBActivity extends Activity {
     public void add(View v) {
         EditText login = (EditText) findViewById(R.id.login);
         EditText pass = (EditText) findViewById(R.id.pass);
-        boolean hasChanged = insertDB(login.getText().toString(),pass.getText().toString());
+        EditText mail = (EditText) findViewById(R.id.mail);
+        EditText phone = (EditText) findViewById(R.id.mobphone);
+        boolean hasChanged = insertDB(mail.getText().toString(),phone.getText().toString(),login.getText().toString(),pass.getText().toString());
         //setChangeData(hasChanged);
         login.setText(null);
     }
@@ -114,9 +116,11 @@ public class DBActivity extends Activity {
         }
     }
 
-    private boolean insertDB(String login,String pass) {
+    private boolean insertDB(String mail,String phone,String login,String pass) {
         if (db != null && db.isOpen() && !db.isReadOnly()) {
             ContentValues values = new ContentValues();
+            values.put(MyDBOpenHelper.FIELD3, mail);
+            values.put(MyDBOpenHelper.FIELD4, phone);
             values.put(MyDBOpenHelper.FIELD1, login);
             values.put(MyDBOpenHelper.FIELD2, pass);
             long id = db.insert(MyDBOpenHelper.MY_TABLE_NAME, null, values);

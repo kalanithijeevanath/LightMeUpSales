@@ -14,8 +14,10 @@ public class MyDBOpenHelper  extends SQLiteOpenHelper {
     public static final String MY_TABLE_NAME = "CONNEXION";
     public static final String FIELD1 = "LOGIN";
     public static final String FIELD2 = "PASS";
+    public static final String FIELD3 = "MAIL";
+    public static final String FIELD4 = "TEL";
 
-    private static final String MY_TABLE_CREATE = "CREATE TABLE " + MY_TABLE_NAME + " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + FIELD1 + " VARCHAR," + FIELD2 + " VARCHAR)";
+    private static final String MY_TABLE_CREATE = "CREATE TABLE " + MY_TABLE_NAME + " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + FIELD3 + " VARCHAR," + FIELD4 + " VARCHAR," + FIELD1 + " VARCHAR," + FIELD2 + " VARCHAR)";
 
     /**
      * My constructor
