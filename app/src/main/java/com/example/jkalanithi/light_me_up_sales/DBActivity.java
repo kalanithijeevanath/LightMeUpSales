@@ -2,6 +2,7 @@ package com.example.jkalanithi.light_me_up_sales;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -24,6 +25,7 @@ public class DBActivity extends Activity {
 
     public static final String NL = System.getProperty("line.separator");
 
+    TextView back;
     SQLiteDatabase db;
     Button refreshButton;
 
@@ -31,12 +33,20 @@ public class DBActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newuser);
+        back= (TextView) findViewById(R.id.lin);
 
         //refreshButton = (Button) findViewById(R.id.refresh);
 
         initDB();
-    }
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.close();
+                startActivity(new Intent(DBActivity.this, MainActivity.class));
+            }
+        });
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -165,7 +175,5 @@ public class DBActivity extends Activity {
         }
         return data.toString();
     }
-
-
 
 }

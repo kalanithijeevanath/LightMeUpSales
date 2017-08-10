@@ -53,8 +53,7 @@ public class MainActivity extends Activity {
 
                 if (ed1.getText().toString().equals(login_get) &&
                         ed2.getText().toString().equals(pass_get)) {
-                    Toast.makeText(getApplicationContext(),
-                            "Redirecting...", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, ListViewActivity.class));
                     db.close();
 
                 } else {
