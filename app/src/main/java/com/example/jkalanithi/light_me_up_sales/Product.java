@@ -15,6 +15,13 @@ public class Product {
     public String product_description;
     public String path_image;
 
+    public Product (String product_name,String ref,Integer product_price_ttc,String path_image){
+        super();
+        this.product_name = product_name;
+        this.ref = ref;
+        this.product_price_ttc = product_price_ttc;
+        this.path_image = path_image;
+    }
     public Product (){
         this.product_name = " ";
         this.ref = " ";

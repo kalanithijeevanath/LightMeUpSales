@@ -53,8 +53,8 @@ public class MainActivity extends Activity {
 
                 if (ed1.getText().toString().equals(login_get) &&
                         ed2.getText().toString().equals(pass_get)) {
-                    startActivity(new Intent(MainActivity.this, ListViewActivity.class));
                     db.close();
+                    startActivity(new Intent(MainActivity.this, Gestion.class));
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();

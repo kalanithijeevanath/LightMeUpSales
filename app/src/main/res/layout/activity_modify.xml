@@ -2,13 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,13 +17,12 @@
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:text="Nom du Produit:"
-                android:textSize="17dp" />
+                android:textSize="17dp"/>
             <EditText
                 android:id="@+id/product_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textCapCharacters"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
         <LinearLayout
@@ -45,8 +41,7 @@
                 android:id="@+id/product_ref"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textCapCharacters"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -131,7 +126,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="textCapCharacters"/>
+                android:inputType="textLongMessage"/>
 
         </LinearLayout>
 
@@ -158,16 +153,15 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             />
         <Button
             android:id="@+id/add_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Creer le produit" />
+            android:text="Mettre a jour le produit" />
+    </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

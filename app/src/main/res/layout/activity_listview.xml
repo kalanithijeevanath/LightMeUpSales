@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="centerCrop"
             android:src="@drawable/icon" />
+        <TextView
+            android:id="@+id/pseudo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/avatar"
+            android:layout_alignTop="@+id/avatar"
+            android:textStyle="bold"
+            tools:text="Pseudo"
+            />
 
         <TextView
-            android:id="@+id/dataText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignBottom="@+id/imageView2"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@+id/imageView2" />
-
-    </LinearLayout>
-
-</LinearLayout>
+            android:id="@+id/text_ref"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_alignLeft="@+id/pseudo"
+            android:layout_below="@+id/pseudo"
+            tools:text="Texte de mon tweet"
+            />
+    <TextView
+        android:id="@+id/ttc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_alignLeft="@+id/text_ref"
+        android:layout_below="@+id/text_ref"
+        tools:text="prix ttc"
+        />
+</RelativeLayout>
