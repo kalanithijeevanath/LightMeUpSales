@@ -6,13 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.jkalanithi.light_me_up_sales.db.MyDBOpenHelper;
+import com.example.jkalanithi.light_me_up_sales.db_helper.MyDBOpenHelper;
 
 import java.util.ArrayList;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * Created by Jkalanithi on 08/08/2017.
@@ -85,7 +82,6 @@ public class DataBaseProduct {
         if (db != null && db.isOpen() && !db.isReadOnly()) {
             ContentValues values = new ContentValues();
             values.put(MyDBOpenHelper.FIELD6, newProductName);
-            values.put(MyDBOpenHelper.FIELD7, ref);
             values.put(MyDBOpenHelper.FIELD8, newProductPriceHt);
             values.put(MyDBOpenHelper.FIELD9, newProductTva);
             values.put(MyDBOpenHelper.FIELD10, newProductPriceTtc);
@@ -93,16 +89,26 @@ public class DataBaseProduct {
             values.put(MyDBOpenHelper.FIELD13, newProductDescription);
             values.put(MyDBOpenHelper.FIELD5, newPathImageLocal);
             int countRows = db.update(MyDBOpenHelper.MY_TABLE_NAME1, values, "REF = ?", new String[]{String.valueOf(ref)});
-            //Toast.makeText(context, "updateDB: " + countRows, LENGTH_SHORT).show();
+
             return (countRows > 0);
         }
         return false;
+    }
+
+    public boolean updateStock(String ref,Integer stock){
+        if (db != null && db.isOpen() && !db.isReadOnly()) {
+            ContentValues values = new ContentValues();
+            values.put(MyDBOpenHelper.FIELD12, stock);
+            int countRows = db.update(MyDBOpenHelper.MY_TABLE_NAME1, values, "REF = ?", new String[]{String.valueOf(ref)});
+            return (countRows > 0);
+        }
+        return false;
+
     }
     //suppression d'une ligne
     public boolean deleteDB(String ref) {
         if (db != null && db.isOpen() && !db.isReadOnly()) {
             int countRows = db.delete(MyDBOpenHelper.MY_TABLE_NAME1, "REF = ?", new String[]{String.valueOf(ref)});
-            //Toast.makeText(context, "deleteDB: " + countRows, LENGTH_SHORT).show();
             return (countRows > 0);
         }
         return false;
@@ -138,22 +144,19 @@ public class DataBaseProduct {
 
     Product getProdect(String ref){
         Product product = new Product();
-        if (db != null && db.isOpen()) {
-            Cursor cursor = db.query(MyDBOpenHelper.MY_TABLE_NAME1, null, null, null, null, null, null);
-            while (cursor.moveToNext()) {
-                long id = cursor.getLong(0);
-                product.setProduct_name(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD6)));
-                product.setProduct_description(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD13)));
-                product.setPath_image(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD5)));
-                product.setProduct_price_ht(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD8)));
-                product.setProduct_tva(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD9)));
-                product.setProduct_price_ttc(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD10)));
-                product.setProduct_stock(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD12)));
-                product.setRef(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD7)));
-            }
-            cursor.close();
+        Cursor  cursor = db.rawQuery("SELECT * FROM " +MyDBOpenHelper.MY_TABLE_NAME1+ " WHERE REF=?" ,new String[]{ref + ""});
+        if (cursor.getCount()>0)
+        {
+            cursor.moveToFirst();
+            product.setProduct_name(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD6)));
+            product.setProduct_description(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD13)));
+            product.setPath_image(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD5)));
+            product.setProduct_price_ht(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD8)));
+            product.setProduct_tva(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD9)));
+            product.setProduct_price_ttc(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD10)));
+            product.setProduct_stock(cursor.getInt(cursor.getColumnIndex(MyDBOpenHelper.FIELD12)));
+            product.setRef(cursor.getString(cursor.getColumnIndex(MyDBOpenHelper.FIELD7)));
         }
         return product;
-
     }
 }

@@ -1,10 +1,8 @@
-package com.example.jkalanithi.light_me_up_sales.db;
+package com.example.jkalanithi.light_me_up_sales.db_helper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.jkalanithi.light_me_up_sales.DBActivity;
 
 /**
  * Created by Jkalanithi on 24/07/2017.

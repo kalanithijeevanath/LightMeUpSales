@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jkalanithi.light_me_up_sales.db.MyDBOpenHelper;
+import com.example.jkalanithi.light_me_up_sales.db_helper.MyDBOpenHelper;
 
 /**
  * Created by Jkalanithi on 24/07/2017.

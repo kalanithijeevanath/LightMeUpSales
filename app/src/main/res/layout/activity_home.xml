@@ -2,18 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/client"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="Client" />
+        android:layout_weight="1">
 
-    <Button
-        android:id="@+id/commercial"
+        <Button
+            android:id="@+id/client"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/cus"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="Commercial" />
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/commercial"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/com"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
 </LinearLayout>

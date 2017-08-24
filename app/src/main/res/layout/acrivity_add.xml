@@ -1,172 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/img">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:text="Nom du Produit:"
-                android:textSize="17dp" />
             <EditText
                 android:id="@+id/product_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textCapCharacters"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
+                android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="Référence du Produit:"
-                android:textSize="17dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom du Produit"
+                android:inputType="textCapCharacters"
+                android:textColorHint="#ADCCE2"
+                android:textColor="#ADCCE2"
+                android:layout_marginLeft="22dp"
+                android:background="#0000"
+                android:padding="16dp"
+                android:layout_marginRight="35dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="1dp"
+                android:background="#ADCCE2" />
             <EditText
                 android:id="@+id/product_ref"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textCapCharacters"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
+                android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="Prix HT du Produit:"
-                android:textSize="17dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Référence du Produit"
+                android:inputType="textCapCharacters"
+                android:textColorHint="#ADCCE2"
+                android:textColor="#ADCCE2"
+                android:layout_marginLeft="22dp"
+                android:background="#0000"
+                android:padding="16dp"
+                android:layout_marginRight="35dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="1dp"
+                android:background="#ADCCE2" />
             <EditText
                 android:id="@+id/product_price_ht"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
+                android:inputType="number"
+                android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="TVA appliqué Produit:"
-                android:textSize="17dp"/>
-            <EditText
-                android:id="@+id/product_tva"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Entrer le pourcentage du TVA"
-                android:inputType="number"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:text="Nb Produit en stock:"
-                android:textSize="17dp"/>
+                android:hint="Prix HT du Produit"
+                android:textColorHint="#ADCCE2"
+                android:textColor="#ADCCE2"
+                android:layout_marginLeft="22dp"
+                android:background="#0000"
+                android:padding="16dp"
+                android:layout_marginRight="35dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="1dp"
+                android:background="#ADCCE2" />
             <EditText
                 android:id="@+id/product_stock"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="number"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
+                android:inputType="number"
+                android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="Description:"
-                android:textSize="17dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nb Produit en stock"
+                android:textColorHint="#ADCCE2"
+                android:textColor="#ADCCE2"
+                android:layout_marginLeft="22dp"
+                android:background="#0000"
+                android:padding="16dp"
+                android:layout_marginRight="35dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="1dp"
+                android:background="#ADCCE2" />
             <EditText
                 android:id="@+id/product_info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textCapCharacters"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
+                android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="Photo:"
-                android:textSize="17dp"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description du Produit"
+                android:textColorHint="#ADCCE2"
+                android:textColor="#ADCCE2"
+                android:layout_marginLeft="22dp"
+                android:background="#0000"
+                android:padding="16dp"
+                android:layout_marginRight="35dp"
+                android:inputType="textCapCharacters"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="1dp"
+                android:background="#ADCCE2" />
             <Button
                 android:id="@+id/product_image"
-                android:layout_width="0dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/camera"/>
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                />
+            <Button
+                android:id="@+id/add_product"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Prendre un photo"/>
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            />
-        <Button
-            android:id="@+id/add_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Creer le produit" />
+                android:text="Creer le produit" />
 
         </LinearLayout>
     </ScrollView>

@@ -6,9 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jkalanithi.light_me_up_sales.db.MyDBOpenHelper;
+import com.example.jkalanithi.light_me_up_sales.db_helper.MyDBOpenHelper;
 
 import static android.content.ContentValues.TAG;
 
@@ -54,7 +52,7 @@ public class MainActivity extends Activity {
                 if (ed1.getText().toString().equals(login_get) &&
                         ed2.getText().toString().equals(pass_get)) {
                     db.close();
-                    startActivity(new Intent(MainActivity.this, Gestion.class));
+                    startActivity(new Intent(MainActivity.this, GestionProduit.class));
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();

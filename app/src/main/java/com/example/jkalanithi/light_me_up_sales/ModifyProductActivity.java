@@ -3,14 +3,21 @@ package com.example.jkalanithi.light_me_up_sales;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,50 +34,76 @@ public class ModifyProductActivity extends Activity {
     Context context;
     private static final int CAMERA_PIC_REQUEST = 001;
     String mCurrentPhotoPath;
-    Button add_product;
+    Button mody_product;
+    EditText name,ht,stock,info;
+    ImageView imageView;
+    File file;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acrivity_add);
+        setContentView(R.layout.activity_modify);
 
 
         context = this.getApplicationContext();
+        Bundle extras = getIntent().getExtras();
+        final String ref = extras.getString("reference");
+
+
+
 
         dataBaseProduct = DataBaseProduct.getInstance(context);
+        final Product product = dataBaseProduct.getProdect(ref);
         Button button1 = (Button) findViewById(R.id.product_image);
-        add_product = (Button)findViewById(R.id.add_product);
+        mody_product = (Button)findViewById(R.id.mody_product);
+        name = (EditText) findViewById(R.id.product_name);
+        ht = (EditText) findViewById(R.id.product_price_ht);
+        stock = (EditText) findViewById(R.id.product_stock);
+        info = (EditText) findViewById(R.id.product_info);
+        imageView = (ImageView) findViewById(R.id.imageView2);
+
+        name.setText(product.getProduct_name());
+        Log.d("name:",product.getProduct_name());
+        ht.setText(product.getProduct_price_ht().toString());
+        stock.setText(product.getProduct_stock().toString());
+        info.setText(product.getProduct_description());
+        Bitmap bitmap = rotateImageIfRequired(product.getPath_image());
+        imageView.setImageBitmap(bitmap);
+
+
 
         button1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 dispatchTakePictureIntent();
-
             }
 
         });
 
-        add_product.setOnClickListener(new View.OnClickListener() {
+        mody_product.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                EditText name = (EditText) findViewById(R.id.product_name);
-                EditText ref = (EditText) findViewById(R.id.product_ref);
-                EditText ht = (EditText) findViewById(R.id.product_price_ht);
-                EditText tva = (EditText) findViewById(R.id.product_tva);
-                EditText stock = (EditText) findViewById(R.id.product_stock);
-                EditText info = (EditText) findViewById(R.id.product_info);
+
 
                 String ht1 = ht.getText().toString();
-                String tva1 = tva.getText().toString();
                 String stock1 = stock.getText().toString();
                 Integer ht_final = Integer.parseInt(ht1);
-                Integer tva_final = Integer.parseInt(tva1);
+                Integer tva_final = 20;
                 Integer stock_final = Integer.parseInt(stock1);
                 Integer ttc = ht_final + ((ht_final*tva_final)/100);
-                boolean hasChanged = dataBaseProduct.insertDB(name.getText().toString(),ref.getText().toString(),ht_final,tva_final,ttc,stock_final,info.getText().toString(),mCurrentPhotoPath);
+                if(mCurrentPhotoPath != null){
+                    file = new File(product.getPath_image());
+                    file.delete();
+                }
+                if(mCurrentPhotoPath == null){
+                    mCurrentPhotoPath = product.getPath_image();
+                }
+                boolean hasChanged = dataBaseProduct.updateDB(name.getText().toString(),ref,ht_final,tva_final,ttc,stock_final,info.getText().toString(),mCurrentPhotoPath);
+                Toast.makeText(getApplicationContext(), "Product updated", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -110,15 +143,66 @@ public class ModifyProductActivity extends Activity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
 
+    public Bitmap rotateImageIfRequired(String imagePath) {
+        int degrees = 0;
+
+        try {
+            ExifInterface exif = new ExifInterface(imagePath);
+            int orientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
+
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degrees = 90;
+                    break;
+
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degrees = 180;
+                    break;
+
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degrees = 270;
+                    break;
+            }
+        } catch (IOException e) {
+            Log.e("ImageError", "Error in reading Exif data of " + imagePath, e);
+        }
+
+        BitmapFactory.Options decodeBounds = new BitmapFactory.Options();
+        decodeBounds.inJustDecodeBounds = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(imagePath, decodeBounds);
+        int numPixels = decodeBounds.outWidth * decodeBounds.outHeight;
+        int maxPixels = 2048 * 1536; // requires 12 MB heap
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = (numPixels > maxPixels) ? 2 : 1;
+
+        bitmap = BitmapFactory.decodeFile(imagePath, options);
+
+        if (bitmap == null) {
+            return null;
+        }
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(degrees);
+
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                bitmap.getHeight(), matrix, true);
+
+        return bitmap;
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_PIC_REQUEST) {
-            ImageView image = (ImageView) findViewById(R.id.imageView1);
-            image.setImageURI(Uri.parse(mCurrentPhotoPath));
+            ImageView image = (ImageView) findViewById(R.id.imageView2);
+            Bitmap bitmap = rotateImageIfRequired(mCurrentPhotoPath);
+            image.setImageBitmap(bitmap);
         }
     }
 }

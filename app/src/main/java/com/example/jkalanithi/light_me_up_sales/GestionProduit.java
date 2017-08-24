@@ -21,8 +21,6 @@ import java.util.ArrayList;
 
 public class GestionProduit extends Activity {
     Button add_produit;
-    Button modify_produit;
-    Button delete_produit;
     Button show_produits;
 
     @Override
@@ -32,30 +30,12 @@ public class GestionProduit extends Activity {
         setContentView(R.layout.activity_gestion_produit);
 
         add_produit = (Button) findViewById(R.id.add);
-        modify_produit = (Button) findViewById(R.id.edit);
-        delete_produit = (Button) findViewById(R.id.delete);
         show_produits = (Button) findViewById(R.id.show);
-
-
 
         add_produit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(GestionProduit.this,AddProductActivity.class));
-            }
-        });
-
-        modify_produit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GestionProduit.this,ModifyProductActivity.class));
-            }
-        });
-
-        delete_produit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(GestionProduit.this,DeleteProductActivity.class));
             }
         });
 

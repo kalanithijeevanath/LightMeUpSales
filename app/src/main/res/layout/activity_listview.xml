@@ -7,8 +7,8 @@
 
         <ImageView
             android:id="@+id/avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:scaleType="centerCrop"
             android:src="@drawable/icon" />
         <TextView
@@ -22,23 +22,33 @@
             android:textStyle="bold"
             tools:text="Pseudo"
             />
-
         <TextView
             android:id="@+id/text_ref"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:layout_alignLeft="@+id/pseudo"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/avatar"
             android:layout_below="@+id/pseudo"
             tools:text="Texte de mon tweet"
             />
     <TextView
-        android:id="@+id/ttc"
+            android:id="@+id/ttc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/avatar"
+            android:layout_below="@+id/text_ref"
+            tools:text="Prix ttc" />
+    <TextView
+        android:id="@+id/stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:layout_alignLeft="@+id/text_ref"
-        android:layout_below="@+id/text_ref"
-        tools:text="prix ttc"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/avatar"
+        android:layout_below="@+id/ttc"
+        tools:text="Stock"
         />
 </RelativeLayout>
