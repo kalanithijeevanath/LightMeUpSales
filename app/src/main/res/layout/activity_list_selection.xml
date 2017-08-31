@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:id="@+id/name_product"
+        android:textColor="#ADCCE2"/>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:text="price"
+        android:layout_toRightOf="@+id/name_product"
+        android:textColor="#ADCCE2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/nb_choix"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:text="nb_choisi"
+        android:textColor="#ADCCE2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/price"
+        android:layout_toRightOf="@+id/name_product"
+        android:layout_toEndOf="@+id/name_product" />
+
+</RelativeLayout>

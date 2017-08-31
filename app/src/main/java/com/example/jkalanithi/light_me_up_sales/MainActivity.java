@@ -28,10 +28,14 @@ public class MainActivity extends Activity {
     int counter = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        initDB();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initDB();
         b1 = (Button) findViewById(R.id.button);
         ed1 = (EditText) findViewById(R.id.editText);
         ed2 = (EditText) findViewById(R.id.editText2);
@@ -41,14 +45,13 @@ public class MainActivity extends Activity {
         tx1.setVisibility(View.GONE);
 
         sup = (TextView) findViewById(R.id.sup);
-
+        ((MyApplication)this.getApplication()).setSomeVariable("admin");
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String login_get = getLogin(ed1.getText().toString());
                 String pass_get= getPass(ed1.getText().toString());
-
                 if (ed1.getText().toString().equals(login_get) &&
                         ed2.getText().toString().equals(pass_get)) {
                     db.close();
@@ -58,7 +61,6 @@ public class MainActivity extends Activity {
                     Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
 
                     tx1.setVisibility(View.VISIBLE);
-                    tx1.setBackgroundColor(Color.RED);
                     counter--;
                     tx1.setText(Integer.toString(counter));
 
@@ -85,22 +87,16 @@ public class MainActivity extends Activity {
                 startActivity(new Intent(MainActivity.this, DBActivity.class));
             }
         });
-
-
-
-
     }
+
+
 
     private void initDB() {
         MyDBOpenHelper dbHelper = new MyDBOpenHelper(getApplicationContext());
 
         try {
             db = dbHelper.getReadableDatabase(); // Database en lecture seule
-//			db = dbHelper.getWritableDatabase(); // Database en lecture/écriture
         } catch (SQLiteException e) {
-//			Ne pas utiliser de chemin absolu !!!
-//			String dbFullFilename = getFilesDir().getAbsolutePath() + File.pathSeparator + MyDBOpenHelper.DB_FILENAME;
-//			db = SQLiteDatabase.openOrCreateDatabase(dbFullFilename, null);
             db = openOrCreateDatabase(MyDBOpenHelper.DB_NAME, MODE_PRIVATE, null);
         }
     }

@@ -1,7 +1,9 @@
 package com.example.jkalanithi.light_me_up_sales;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -44,10 +46,29 @@ public class SelectionActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Bundle extras = getIntent().getExtras();
-                String ref = extras.getString("ref");
+                final String ref = extras.getString("ref");
+                AlertDialog alertDialog = new AlertDialog.Builder(SelectionActivity.this).create();
+                alertDialog.setTitle("Delete Confirmation");
+                alertDialog.setMessage("Want to confirm your chose ? ");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                boolean hasChanged = dataBaseProduct.deleteDB(ref);
+                                dialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Product deleted", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });
+                alertDialog.show();
 
-                boolean hasChanged = dataBaseProduct.deleteDB(ref);
-                Toast.makeText(getApplicationContext(), "Product deleted", Toast.LENGTH_SHORT).show();
+
 
             }
         });

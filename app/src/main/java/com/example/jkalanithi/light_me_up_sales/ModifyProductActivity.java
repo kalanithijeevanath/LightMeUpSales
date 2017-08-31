@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,7 +66,6 @@ public class ModifyProductActivity extends Activity {
         imageView = (ImageView) findViewById(R.id.imageView2);
 
         name.setText(product.getProduct_name());
-        Log.d("name:",product.getProduct_name());
         ht.setText(product.getProduct_price_ht().toString());
         stock.setText(product.getProduct_stock().toString());
         info.setText(product.getProduct_description());
@@ -88,13 +88,24 @@ public class ModifyProductActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-
+                if(TextUtils.isEmpty(name.getText().toString()) || TextUtils.isEmpty(ht.getText().toString()) || TextUtils.isEmpty(info.getText().toString())) {
+                    if (TextUtils.isEmpty(name.getText().toString())){
+                        name.setError("Product name cannot be empty");
+                    }
+                    if(TextUtils.isEmpty(ht.getText().toString())){
+                        ht.setError("Product price without tax cannot be empty");
+                    }
+                    if(TextUtils.isEmpty(info.getText().toString())){
+                        info.setError("Product information cannot be empty");
+                    }
+                    return;
+                }
                 String ht1 = ht.getText().toString();
                 String stock1 = stock.getText().toString();
-                Integer ht_final = Integer.parseInt(ht1);
+                Double ht_final = Double.parseDouble(ht1);
                 Integer tva_final = 20;
                 Integer stock_final = Integer.parseInt(stock1);
-                Integer ttc = ht_final + ((ht_final*tva_final)/100);
+                Double ttc = ht_final + ((ht_final*tva_final)/100);
                 if(mCurrentPhotoPath != null){
                     file = new File(product.getPath_image());
                     file.delete();
@@ -104,6 +115,7 @@ public class ModifyProductActivity extends Activity {
                 }
                 boolean hasChanged = dataBaseProduct.updateDB(name.getText().toString(),ref,ht_final,tva_final,ttc,stock_final,info.getText().toString(),mCurrentPhotoPath);
                 Toast.makeText(getApplicationContext(), "Product updated", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }

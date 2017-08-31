@@ -28,7 +28,7 @@ public class MyDBOpenHelper  extends SQLiteOpenHelper {
 
     private static final String MY_TABLE_CREATE = "CREATE TABLE " + MY_TABLE_NAME + " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + FIELD3 + " VARCHAR," + FIELD4 + " VARCHAR," + FIELD1 + " VARCHAR," + FIELD2 + " VARCHAR)";
     private static final String MY_TABLE_CREATE1 = "CREATE TABLE " + MY_TABLE_NAME1 + " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, " + FIELD6 + " TEXT," + FIELD7 + " TEXT," + FIELD8
-            + " INTEGER," + FIELD9 + " INTEGER," + FIELD10 + " INTEGER," + FIELD12 + " INTEGER," + FIELD13 + " TEXT,"   + FIELD5 + " TEXT)";
+            + " REAL," + FIELD9 + " INTEGER," + FIELD10 + " REAL," + FIELD12 + " INTEGER," + FIELD13 + " TEXT,"   + FIELD5 + " TEXT)";
 
     /**
      * My constructor

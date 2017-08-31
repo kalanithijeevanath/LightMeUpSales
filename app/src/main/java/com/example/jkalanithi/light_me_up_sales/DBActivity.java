@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,14 +28,14 @@ public class DBActivity extends Activity {
 
     TextView back;
     SQLiteDatabase db;
-    Button refreshButton;
+    EditText login,pass,mail,phone;
+    String phone_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newuser);
         back= (TextView) findViewById(R.id.lin);
-
         //refreshButton = (Button) findViewById(R.id.refresh);
 
         initDB();
@@ -43,7 +44,7 @@ public class DBActivity extends Activity {
             @Override
             public void onClick(View v) {
                 db.close();
-                startActivity(new Intent(DBActivity.this, MainActivity.class));
+                finish();
             }
         });
     }
@@ -55,73 +56,44 @@ public class DBActivity extends Activity {
     }
 
     public void add(View v) {
-        EditText login = (EditText) findViewById(R.id.login);
-        EditText pass = (EditText) findViewById(R.id.pass);
-        EditText mail = (EditText) findViewById(R.id.mail);
-        EditText phone = (EditText) findViewById(R.id.mobphone);
-        boolean hasChanged = insertDB(mail.getText().toString(),phone.getText().toString(),login.getText().toString(),pass.getText().toString());
-        //setChangeData(hasChanged);
+        boolean state;
+        login = (EditText) findViewById(R.id.login);
+        pass = (EditText) findViewById(R.id.pass);
+        mail = (EditText) findViewById(R.id.mail);
+        phone = (EditText) findViewById(R.id.mobphone);
+
+        phone_number = phone.getText().toString();
+
+        if(TextUtils.isEmpty(mail.getText().toString()) || TextUtils.isEmpty(pass.getText().toString()) || TextUtils.isEmpty(login.getText().toString()) ) {
+            if (TextUtils.isEmpty(mail.getText().toString())){
+                mail.setError("Mail cannot be empty");
+            }
+            if (TextUtils.isEmpty(login.getText().toString())){
+                login.setError("Login cannot be empty");
+            }
+            if(TextUtils.isEmpty(pass.getText().toString())){
+                pass.setError("Password cannot be empty");
+            }
+            if(TextUtils.isEmpty(phone.getText().toString())){
+                phone_number = "";
+            }
+            return;
+        }
+        state = CheckIsExist(login.getText().toString());
+        if(state == true) {
+            login.setError("Login already exist");
+            return;
+        }
+        boolean hasChanged = insertDB(mail.getText().toString(),phone_number,login.getText().toString(),pass.getText().toString());
         login.setText(null);
     }
-/*
-    public void modify(View v) {
-
-
-        EditText idText = (EditText) findViewById(R.id.idText);
-        EditText nameText = (EditText) findViewById(R.id.nameText);
-
-        try {
-            long id = Long.parseLong(idText.getText().toString());
-            boolean hasChanged = updateDB(id, nameText.getText().toString());
-            setChangeData(hasChanged);
-        }
-        catch (NumberFormatException e) {
-        }
-        idText.setText(null);
-        nameText.setText(null);
-    }
-
-    public void delete(View v) {
-        EditText idDelete = (EditText) findViewById(R.id.idDelete);
-        try {
-            long id = Long.parseLong(idDelete.getText().toString());
-            boolean hasChanged = deleteDB(id);
-            setChangeData(hasChanged);
-        }
-        catch (NumberFormatException e) {
-        }
-        idDelete.setText(null);
-    }
-
-    public void displayData(View v) {
-        setChangeData(false);
-
-        TextView dataText = (TextView) findViewById(R.id.dataText);
-        dataText.setText(queryDB());
-    }
-
-    private void setChangeData(boolean change) {
-        String label = refreshButton.getText().toString();
-        if (change && !label.startsWith("*")) {
-            refreshButton.setText("*"+label);
-        }
-        else if (!change && label.startsWith("*")) {
-            refreshButton.setText(label.substring(1));
-        }
-    }
-*/
-
     private void initDB() {
         MyDBOpenHelper dbHelper = new MyDBOpenHelper(getApplicationContext());
 
         try {
             db = dbHelper.getReadableDatabase(); // Database en lecture seule
-//			db = dbHelper.getWritableDatabase(); // Database en lecture/écriture
         }
         catch (SQLiteException e) {
-//			Ne pas utiliser de chemin absolu !!!
-//			String dbFullFilename = getFilesDir().getAbsolutePath() + File.pathSeparator + MyDBOpenHelper.DB_FILENAME;
-//			db = SQLiteDatabase.openOrCreateDatabase(dbFullFilename, null);
             db = openOrCreateDatabase(MyDBOpenHelper.DB_NAME, MODE_PRIVATE, null);
         }
     }
@@ -176,4 +148,12 @@ public class DBActivity extends Activity {
         return data.toString();
     }
 
+    public boolean CheckIsExist(String login){
+        Cursor  cursor = db.rawQuery("SELECT * FROM " +MyDBOpenHelper.MY_TABLE_NAME+ " WHERE LOGIN=?" ,new String[]{login + ""});
+        if (cursor.getCount()>0)
+        {
+            return true;
+        }
+        return false;
+    }
 }

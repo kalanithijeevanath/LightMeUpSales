@@ -4,11 +4,26 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/img">
+
     <ListView
         android:id="@+id/listView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     </ListView>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PAYED"
+            android:background="#C70039"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:id="@+id/pay"
+            android:enabled="false"
+            android:layout_weight="0"
+            android:visibility="invisible"/>
 
 </LinearLayout>

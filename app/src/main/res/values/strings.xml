@@ -10,8 +10,14 @@
     <string name="add">Creér</string>
     <string name="displayData">Actualiser les données</string>
     <string-array name="tva">
-        <item >5</item>
-        <item >10</item>
-        <item >20</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
     </string-array>
+    <string name="title_activity_admin">AdminActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

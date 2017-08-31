@@ -11,80 +11,149 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_alignParentBottom="true">
-            <EditText
-                android:id="@+id/product_name"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nom du Produit"
-                android:inputType="textCapCharacters"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Product Name : "
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:id="@+id/textView" />
+                <EditText
+                    android:id="@+id/product_name"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type product name"
+                    android:inputType="textCapCharacters"
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_toRightOf="@+id/textView"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_height="1dp"
                 android:background="#ADCCE2" />
-            <EditText
-                android:id="@+id/product_price_ht"
-                android:inputType="number"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Prix HT du Produit"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Product Price : "
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:id="@+id/textView9" />
+                <EditText
+                    android:id="@+id/product_price_ht"
+                    android:inputType="number"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type product price without tax"
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_toRightOf="@+id/textView9"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_height="1dp"
                 android:background="#ADCCE2" />
-            <EditText
-                android:id="@+id/product_stock"
-                android:inputType="number"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nb Produit en stock"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Product in Stock : "
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:id="@+id/textView10" />
+                <EditText
+                    android:id="@+id/product_stock"
+                    android:inputType="number"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Product stock available"
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:layout_toRightOf="@+id/textView10"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_height="1dp"
                 android:background="#ADCCE2" />
-            <EditText
-                android:id="@+id/product_info"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Description du Produit"
-                android:textColorHint="#ADCCE2"
-                android:textColor="#ADCCE2"
-                android:layout_marginLeft="22dp"
-                android:background="#0000"
-                android:padding="16dp"
-                android:layout_marginRight="35dp"
-                android:inputType="textCapCharacters"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Product Information : "
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:id="@+id/textView11" />
+                <EditText
+                    android:id="@+id/product_info"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type product information"
+                    android:textColorHint="#ADCCE2"
+                    android:textColor="#ADCCE2"
+                    android:background="#0000"
+                    android:padding="16dp"
+                    android:inputType="textCapCharacters"
+                    android:layout_toRightOf="@+id/textView11"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="40dp"
@@ -108,7 +177,10 @@
                 android:id="@+id/mody_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mettre a jour le produit" />
+                android:text="Update  product  details"
+                android:background="#900C3F"
+                android:textColor="#FFF"
+                android:textStyle="bold"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

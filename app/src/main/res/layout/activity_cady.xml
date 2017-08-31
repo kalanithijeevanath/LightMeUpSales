@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity"
+    android:background="@drawable/img">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/product_select_name"
+        android:textColor="#ADCCE2"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/decrease"
+        android:onClick="decreaseInteger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:background="#900C3F"/>
+    <TextView
+        android:id="@+id/integer_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="30sp"
+        android:text="1"
+        android:textColor="#ADCCE2"/>
+
+    <Button
+        android:id="@+id/increase"
+        android:onClick="increaseInteger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:background="#900C3F"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add to Cart"
+        android:id="@+id/add_to_cady"
+        android:textStyle="bold"
+        android:background="#900C3F"
+        android:textColor="#FFF"
+        />
+</LinearLayout>

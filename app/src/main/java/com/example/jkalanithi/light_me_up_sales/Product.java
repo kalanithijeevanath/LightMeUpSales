@@ -8,15 +8,15 @@ public class Product {
 
     public String product_name;
     public String ref;
-    public Integer product_price_ht;
+    public Double product_price_ht;
     public Integer product_tva;
-    public Integer product_price_ttc;
+    public Double product_price_ttc;
     public Integer product_stock;
     public String product_description;
     public String path_image;
 
 
-    public Product (String product_name,String ref,Integer product_price_ttc,String path_image,Integer stock){
+    public Product (String product_name,String ref,Double product_price_ttc,String path_image,Integer stock){
         super();
         this.product_name = product_name;
         this.ref = ref;
@@ -27,14 +27,14 @@ public class Product {
     public Product (){
         this.product_name = " ";
         this.ref = " ";
-        this.product_price_ht = 0;
+        this.product_price_ht = 0.0;
         this.product_tva = 0;
-        this.product_price_ttc = 0;
+        this.product_price_ttc = 0.0;
         this.product_stock = 0;
         this.product_description = " ";
         this.path_image = " ";
     }
-    public Product (String productName, String ref, Integer productPriceHt, Integer productTva, Integer productPriceTtc, Integer productStock, String productDescription, String pathImageLocal){
+    public Product (String productName, String ref, Double productPriceHt, Integer productTva, Double productPriceTtc, Integer productStock, String productDescription, String pathImageLocal){
         this.product_name = productName;
         this.ref = productName;
         this.product_price_ht = productPriceHt;
@@ -57,11 +57,11 @@ public class Product {
         this.product_name = product_name;
     }
 
-    public void setProduct_price_ht(Integer product_price_ht) {
+    public void setProduct_price_ht(Double product_price_ht) {
         this.product_price_ht = product_price_ht;
     }
 
-    public void setProduct_price_ttc(Integer product_price_ttc) {
+    public void setProduct_price_ttc(Double product_price_ttc) {
         this.product_price_ttc = product_price_ttc;
     }
 
@@ -77,11 +77,11 @@ public class Product {
         this.ref = ref;
     }
 
-    public Integer getProduct_price_ht() {
+    public Double getProduct_price_ht() {
         return product_price_ht;
     }
 
-    public Integer getProduct_price_ttc() {
+    public Double getProduct_price_ttc() {
         return product_price_ttc;
     }
 

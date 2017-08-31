@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +36,7 @@ public class AddProductActivity extends Activity {
     private DataBaseProduct dataBaseProduct;
     Context context;
     private static final int CAMERA_PIC_REQUEST = 001;
-    String mCurrentPhotoPath;
+    String mCurrentPhotoPath ="";
     Button add_product;
 
 
@@ -48,7 +49,7 @@ public class AddProductActivity extends Activity {
         context = this.getApplicationContext();
 
         dataBaseProduct = DataBaseProduct.getInstance(context);
-        Button button1 = (Button) findViewById(R.id.product_image);
+        final Button button1 = (Button) findViewById(R.id.product_image);
         add_product = (Button)findViewById(R.id.add_product);
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -69,15 +70,48 @@ public class AddProductActivity extends Activity {
                 EditText ht = (EditText) findViewById(R.id.product_price_ht);
                 EditText stock = (EditText) findViewById(R.id.product_stock);
                 EditText info = (EditText) findViewById(R.id.product_info);
+                boolean state;
+
+
+                if(TextUtils.isEmpty(name.getText().toString()) || TextUtils.isEmpty(ref.getText().toString()) || TextUtils.isEmpty(ht.getText().toString()) || TextUtils.isEmpty(info.getText().toString()) || mCurrentPhotoPath.isEmpty()  ) {
+                    if (TextUtils.isEmpty(name.getText().toString())){
+                        name.setError("Product name cannot be empty");
+                    }
+                    if (TextUtils.isEmpty(ref.getText().toString())){
+                        ref.setError("Product reference cannot be empty");
+                    }
+                    if(TextUtils.isEmpty(ht.getText().toString())){
+                        ht.setError("Product price without tax cannot be empty");
+                    }
+                    if(TextUtils.isEmpty(info.getText().toString())){
+                        info.setError("Product information cannot be empty");
+                    }
+                    if(mCurrentPhotoPath.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "Photo requested", Toast.LENGTH_SHORT).show();
+                    }
+                    return;
+                }
+                if(ref.getText().toString().isEmpty() == false){
+                    state = dataBaseProduct.CheckIsExist(ref.getText().toString());
+                    if (state == true){
+                        ref.setError("Product reference already exist");
+                        return;
+                    }
+                }
+
 
                 String ht1 = ht.getText().toString();
                 String stock1 = stock.getText().toString();
-                Integer ht_final = Integer.parseInt(ht1);
+                Double ht_final = Double.parseDouble(ht1);
                 Integer tva_final = 20;
                 Integer stock_final = Integer.parseInt(stock1);
-                Integer ttc = ht_final + ((ht_final*tva_final)/100);
+                if (stock_final == null){
+                    stock_final = 0;
+                }
+                Double ttc = ht_final + ((ht_final*tva_final)/100);
                 boolean hasChanged = dataBaseProduct.insertDB(name.getText().toString(),ref.getText().toString(),ht_final,tva_final,ttc,stock_final,info.getText().toString(),mCurrentPhotoPath);
                 Toast.makeText(getApplicationContext(), "Product added", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
