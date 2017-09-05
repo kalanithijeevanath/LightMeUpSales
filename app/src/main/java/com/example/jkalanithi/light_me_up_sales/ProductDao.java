@@ -1,7 +1,9 @@
 package com.example.jkalanithi.light_me_up_sales;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
+
+import com.example.jkalanithi.light_me_up_sales.Data_Base.DataBaseProduct;
+import com.example.jkalanithi.light_me_up_sales.Model.Product;
 
 import java.util.ArrayList;
 

@@ -1,13 +1,15 @@
-package com.example.jkalanithi.light_me_up_sales;
+package com.example.jkalanithi.light_me_up_sales.Model;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.jkalanithi.light_me_up_sales.Data_Base.DataBaseProduct;
+import com.example.jkalanithi.light_me_up_sales.R;
 
 /**
  * Created by Jkalanithi on 28/08/2017.

@@ -1,4 +1,4 @@
-package com.example.jkalanithi.light_me_up_sales;
+package com.example.jkalanithi.light_me_up_sales.Data_Base;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+import com.example.jkalanithi.light_me_up_sales.Model.Product;
 import com.example.jkalanithi.light_me_up_sales.db_helper.MyDBOpenHelper;
 
 import java.util.ArrayList;
@@ -155,7 +156,7 @@ public class DataBaseProduct {
     }
 
     // récupération des données
-    ArrayList<Product> queryDB() {
+    public ArrayList<Product> queryDB() {
         ArrayList<Product> products = new ArrayList<>();
 
         if (db != null && db.isOpen()) {
@@ -182,7 +183,7 @@ public class DataBaseProduct {
         db.close();
     }
 
-    Product getProdect(String ref){
+    public Product getProdect(String ref){
         Product product = new Product();
         Cursor  cursor = db.rawQuery("SELECT * FROM " +MyDBOpenHelper.MY_TABLE_NAME1+ " WHERE REF=?" ,new String[]{ref + ""});
         if (cursor.getCount()>0)

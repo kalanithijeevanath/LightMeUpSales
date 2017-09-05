@@ -1,28 +1,23 @@
 package com.example.jkalanithi.light_me_up_sales;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.jkalanithi.light_me_up_sales.Adapter.ProductAdapter;
+import com.example.jkalanithi.light_me_up_sales.Data_Base.DataBaseProduct;
+import com.example.jkalanithi.light_me_up_sales.Model.Product;
+import com.example.jkalanithi.light_me_up_sales.Model.ProductCady;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.text.TextUtils.concat;
 
 /**
  * Created by Jkalanithi on 04/08/2017.

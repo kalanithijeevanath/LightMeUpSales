@@ -1,19 +1,16 @@
-package com.example.jkalanithi.light_me_up_sales;
+package com.example.jkalanithi.light_me_up_sales.Adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
-import java.util.List;
+import com.example.jkalanithi.light_me_up_sales.CartProduct;
+import com.example.jkalanithi.light_me_up_sales.R;
 
-import static com.example.jkalanithi.light_me_up_sales.MyThumbnailUtils.rotateImageIfRequired;
+import java.util.List;
 
 /**
  * Created by Jkalanithi on 31/08/2017.

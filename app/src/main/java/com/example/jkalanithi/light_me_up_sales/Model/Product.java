@@ -1,4 +1,4 @@
-package com.example.jkalanithi.light_me_up_sales;
+package com.example.jkalanithi.light_me_up_sales.Model;
 
 /**
  * Created by Jkalanithi on 08/08/2017.

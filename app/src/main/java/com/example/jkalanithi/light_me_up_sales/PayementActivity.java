@@ -13,6 +13,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jkalanithi.light_me_up_sales.Adapter.ProductCartAdapter;
+import com.example.jkalanithi.light_me_up_sales.Data_Base.DataBaseProduct;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +67,9 @@ public class PayementActivity extends Activity {
             @Override
             public void onClick(View v) {
                 changeStock();
-                Toast.makeText(getApplicationContext(), "Payed with Visa Cart", Toast.LENGTH_SHORT).show();
+                Intent visa = new Intent(PayementActivity.this, VisaActivity.class);
+                visa.putExtra("prix",total_price.toString());
+                startActivity(visa);
                 finish();
             }
         });

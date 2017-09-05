@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +18,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.jkalanithi.light_me_up_sales.Data_Base.DataBaseProduct;
+import com.example.jkalanithi.light_me_up_sales.Model.Product;
 
 import java.io.File;
 import java.io.IOException;

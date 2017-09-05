@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jkalanithi.light_me_up_sales.Data_Base.DataBaseProduct;
+import com.example.jkalanithi.light_me_up_sales.Model.Product;
+
 /**
  * Created by Jkalanithi on 22/08/2017.
  */
