@@ -36,8 +36,8 @@ public class PayementActivity extends Activity {
     Double total_price;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
         setContentView(R.layout.activity_payment);
         paypal = (Button) findViewById(R.id.paypal);
         visa = (Button) findViewById(R.id.visa);
@@ -71,6 +71,7 @@ public class PayementActivity extends Activity {
                 visa.putExtra("prix",total_price.toString());
                 startActivity(visa);
                 finish();
+
             }
         });
 
